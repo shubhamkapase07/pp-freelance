@@ -1,0 +1,268 @@
+/* PP Freelance Portfolio Custom Styles */
+/* Based on BigFish Design System with Orange-Dark Theme */
+
+:root {
+  /* Primary Interface Colors */
+  --color-black: #0f172a;                    /* Slate-900 - Main backgrounds */
+  --color-white: #fff;                       /* White - Contrast */
+  --color-dark-grey: #64748b;                /* Slate-500 - Secondary text */
+  --color-mid-grey: #94a3b8;                 /* Slate-400 - Muted elements */
+  --color-grey: #cbd5e1;                     /* Slate-300 - Subtle backgrounds */
+  
+  /* Orange Brand Colors */
+  --color-orange-primary: #f97316;           /* Orange-500 - Primary brand */
+  --color-orange-dark: #ea580c;              /* Orange-600 - Hover states */
+  --color-orange-light: #fed7aa;             /* Orange-200 - Light backgrounds */
+  --color-amber-primary: #f59e0b;            /* Amber-500 - Secondary brand */
+  --color-amber-light: #fef3c7;              /* Amber-100 - Light accents */
+}
+
+/* Font System */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display fonts for large headings */
+.font-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Mono font for buttons and technical elements */
+.font-mono {
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+}
+
+/* App container reset */
+.App {
+  text-align: left;
+  min-height: 100vh;
+}
+
+/* Core Component Styles */
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(249, 115, 22, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Service Buttons - Rounded Tags (BigFish Style) */
+.service-button {
+  background: var(--color-orange-primary);
+  color: white;
+  border: 1px solid var(--color-orange-primary);
+  border-radius: 9999px;
+  padding: 0.375rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.service-button:hover {
+  background: var(--color-orange-dark);
+  border-color: var(--color-orange-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+/* CTA Buttons - Premium Style */
+.cta-button {
+  background: var(--color-orange-primary);
+  color: white;
+  border: 1px solid var(--color-orange-primary);
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.3);
+}
+
+.cta-button:hover {
+  background: var(--color-orange-dark);
+  border-color: var(--color-orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+/* Service Cards */
+.service-card {
+  position: relative;
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.service-card:hover::before {
+  left: 100%;
+}
+
+.service-card:hover {
+  border-color: rgba(249, 115, 22, 0.5);
+  background: rgba(30, 41, 59, 0.7);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-orange-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-orange-dark);
+}
+
+/* Focus states */
+*:focus {
+  outline: 2px solid var(--color-orange-primary);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background: var(--color-orange-primary);
+  color: white;
+}
+
+/* Container max-width system */
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Glassmorphism effects */
+.glass-effect {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* Portfolio specific animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .font-display {
+    letter-spacing: -0.015em;
+  }
+  
+  .service-button {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .cta-button {
+    font-size: 0.75rem;
+    padding: 0.625rem 1.5rem;
+    min-height: 44px;
+  }
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
