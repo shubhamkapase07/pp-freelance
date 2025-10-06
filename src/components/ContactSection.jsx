@@ -23,17 +23,31 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission (will be replaced with actual backend integration)
     try {
-      // Mock submission delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Replace 'YOUR_APPS_SCRIPT_URL' with your actual Google Apps Script web app URL
+      const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNOFyahP5dR8aqNchrSKWICRHQMt2Sf3KXX3tY9hXEnnc_CfmAtudghjPkYobu9sdh/exec';
       
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error(result.message || 'Failed to submit form');
+      }
       
       // Reset status after 3 seconds
       setTimeout(() => setSubmitStatus(''), 3000);
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(''), 3000);
     } finally {
@@ -114,12 +128,12 @@ const ContactSection = () => {
 
             {/* Visual element */}
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-orange-500/20 to-amber-600/20 rounded-2xl p-8 backdrop-blur-sm border border-orange-500/20">
-                <div className="h-full bg-slate-800/80 rounded-xl p-8 flex items-center justify-center">
+              <div className="h-56 bg-gradient-to-br from-orange-500/20 to-amber-600/20 rounded-2xl p-4 backdrop-blur-sm border border-orange-500/20">
+                <div className="h-full bg-slate-800/80 rounded-xl p-4 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-4xl font-bold text-orange-400 mb-4">Let's</div>
-                    <div className="text-4xl font-bold text-white mb-4">Work</div>
-                    <div className="text-4xl font-bold text-orange-400">Together</div>
+                    <div className="text-3xl font-bold text-orange-400 mb-2">Let's</div>
+                    <div className="text-3xl font-bold text-white mb-2">Work</div>
+                    <div className="text-3xl font-bold text-orange-400">Together</div>
                   </div>
                 </div>
               </div>

@@ -49,18 +49,7 @@ export const services = [
     description: "Enhance your LinkedIn profile to attract recruiters and opportunities",
     icon: "Linkedin"
   },
-  {
-    id: 9,
-    title: "Career Guidance",
-    description: "Personalized career coaching to accelerate your professional growth",
-    icon: "TrendingUp"
-  },
-  {
-    id: 10,
-    title: "Custom Projects",
-    description: "Flexible solutions tailored to your unique business needs",
-    icon: "Wrench"
-  }
+  
 ];
 
 export const portfolioProjects = [
@@ -132,7 +121,7 @@ export const testimonials = [
     id: 2,
     name: "Priya Sharma",
     role: "Marketing Manager, Creative Hub",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b830?w=150&h=150&fit=crop&crop=face",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
     feedback: "The social media campaigns created by PP Freelance increased our engagement by 400%. Their creative approach is unmatched."
   },
   {
@@ -152,8 +141,8 @@ export const testimonials = [
 ];
 
 export const companyInfo = {
-  tagline: "Create Work that Work's for You!",
-  about: "PP Freelance is part of Placement Prodigy, dedicated to helping clients with affordable creative & tech services while giving students and job seekers real-world exposure. We bridge the gap between learning and earning, creating opportunities for both clients and aspiring professionals.",
+  tagline: "...Create Work that Work's for You!",
+  about: "... PP Freelance is part of Placement Prodigy, dedicated to helping clients with affordable creative & tech services while giving students and job seekers real-world exposure. We bridge the gap between learning and earning, creating opportunities for both clients and aspiring professionals.",
   whatsappNumber: "+91-9834190623",
   email: "placementprodigy@gmail.com",
   address: "Pune, Maharashtra, India"

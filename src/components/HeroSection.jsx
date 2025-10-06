@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronDown, MessageCircle } from 'lucide-react';
 import { companyInfo } from '../mock/mockData';
+import VideoBackground from './VideoBackground';
 
 const HeroSection = () => {
   const handleWhatsAppClick = () => {
@@ -14,12 +15,11 @@ const HeroSection = () => {
 
   return (
     <section className="hero-section relative min-h-screen bg-slate-900 flex items-center justify-center overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-orange-600/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }} />
-      </div>
+      {/* Video Background */}
+      <VideoBackground 
+        videos={['/herobganimation.mp4']}
+        blur={true}
+      />
 
       {/* Main content */}
       <div className="relative z-10 text-center px-4">
@@ -36,7 +36,7 @@ const HeroSection = () => {
         {/* Brand name */}
         <h1 className="font-display text-white text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight group inline-block">
           <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 bg-clip-text text-transparent transition-[background-position] duration-500 bg-[length:200%_100%] bg-left hover:bg-right">
-            PP FREELANCE
+            PP Freelance
           </span>
         </h1>
 
@@ -51,13 +51,13 @@ const HeroSection = () => {
             onClick={handleWhatsAppClick}
             className="cta-button inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
           >
-            <MessageCircle className="w-6 h-6" />
+            <MessageCircle className="w-7 h-7" />
             Let's Talk
           </button>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
           <button 
             onClick={scrollToServices}
             className="animate-bounce text-orange-400 hover:text-orange-300 transition-colors duration-300"
