@@ -1,79 +1,77 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send } from 'lucide-react';
-import { companyInfo } from '../mock/mockData';
+import React, { useState } from "react";
+import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { companyInfo } from "../mock/mockData";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [submitStatus, setSubmitStatus] = useState("");
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Replace 'YOUR_APPS_SCRIPT_URL' with your actual Google Apps Script web app URL
-      const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzNOFyahP5dR8aqNchrSKWICRHQMt2Sf3KXX3tY9hXEnnc_CfmAtudghjPkYobu9sdh/exec';
-      
-      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', message: '' });
-      } else {
-        throw new Error(result.message || 'Failed to submit form');
-      }
-      
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus(''), 3000);
-    } catch (error) {
-      console.error('Form submission error:', error);
-      setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(''), 3000);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    const NOCODEAPI_URL =
+      "https://v1.nocodeapi.com/shubhamkapase07/google_sheets/XeZtJbENEuMYRCXv?tabId=Sheet1";
+
+    // ✅ Build a 2D array (each inner array is one new row)
+    const values = [
+      [formData.name, formData.email, formData.phone, formData.message, new Date().toLocaleString()],
+    ];
+
+    const res = await fetch(NOCODEAPI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+
+    if (!res.ok) throw new Error("Failed to send data");
+
+    setSubmitStatus("success");
+    setFormData({ name: "", email: "", phone: "", message: "" });
+    setTimeout(() => setSubmitStatus(""), 3000);
+  } catch (err) {
+    console.error("Form submission error:", err);
+    setSubmitStatus("error");
+    setTimeout(() => setSubmitStatus(""), 3000);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const contactInfo = [
     {
       icon: Phone,
       title: "Phone",
       details: companyInfo.whatsappNumber,
-      link: `tel:${companyInfo.whatsappNumber}`
+      link: `tel:${companyInfo.whatsappNumber}`,
     },
     {
       icon: Mail,
       title: "Email",
       details: companyInfo.email,
-      link: `mailto:${companyInfo.email}`
+      link: `mailto:${companyInfo.email}`,
     },
     {
       icon: MapPin,
       title: "Location",
       details: companyInfo.address,
-      link: null
-    }
+      link: null,
+    },
   ];
 
   return (
@@ -85,14 +83,14 @@ const ContactSection = () => {
           </h2>
           <div className="w-24 h-1 bg-orange-500 mx-auto mb-8"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your project and create something amazing together.
+            Ready to bring your ideas to life? Let's discuss your project and
+            create something amazing together.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left side - Contact info and visual */}
+          {/* Left side - Contact info */}
           <div className="space-y-8">
-            {/* Contact information */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
                 const IconComponent = info.icon;
@@ -105,13 +103,10 @@ const ContactSection = () => {
                       <h3 className="text-xl font-semibold text-white mb-2">
                         {info.title}
                       </h3>
-                      <p className="text-gray-300">
-                        {info.details}
-                      </p>
+                      <p className="text-gray-300">{info.details}</p>
                     </div>
                   </div>
                 );
-                
                 return (
                   <div key={index}>
                     {info.link ? (
@@ -126,30 +121,40 @@ const ContactSection = () => {
               })}
             </div>
 
-            {/* Visual element */}
+            {/* Visual */}
             <div className="relative">
               <div className="h-56 bg-gradient-to-br from-orange-500/20 to-amber-600/20 rounded-2xl p-4 backdrop-blur-sm border border-orange-500/20">
                 <div className="h-full bg-slate-800/80 rounded-xl p-4 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-400 mb-2">Let's</div>
-                    <div className="text-3xl font-bold text-white mb-2">Work</div>
-                    <div className="text-3xl font-bold text-orange-400">Together</div>
+                    <div className="text-3xl font-bold text-orange-400 mb-2">
+                      Let's
+                    </div>
+                    <div className="text-3xl font-bold text-white mb-2">
+                      Work
+                    </div>
+                    <div className="text-3xl font-bold text-orange-400">
+                      Together
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Decorative elements */}
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-orange-500/20 rounded-full blur-xl animate-pulse"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-amber-500/20 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}}></div>
+              <div
+                className="absolute -bottom-6 -left-6 w-32 h-32 bg-amber-500/20 rounded-full blur-xl animate-pulse"
+                style={{ animationDelay: "1s" }}
+              ></div>
             </div>
           </div>
 
-          {/* Right side - Contact form */}
+          {/* Right side - Form */}
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -163,9 +168,12 @@ const ContactSection = () => {
                     placeholder="Your full name"
                   />
                 </div>
-                
+
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -182,7 +190,10 @@ const ContactSection = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
                   Phone Number
                 </label>
                 <input
@@ -197,7 +208,10 @@ const ContactSection = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
                   Message *
                 </label>
                 <textarea
@@ -212,7 +226,6 @@ const ContactSection = () => {
                 />
               </div>
 
-              {/* Submit button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -231,14 +244,13 @@ const ContactSection = () => {
                 )}
               </button>
 
-              {/* Status messages */}
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <div className="text-center p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-400">
                   Message sent successfully! We'll get back to you soon.
                 </div>
               )}
-              
-              {submitStatus === 'error' && (
+
+              {submitStatus === "error" && (
                 <div className="text-center p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400">
                   Something went wrong. Please try again.
                 </div>
