@@ -25,7 +25,7 @@ const handleSubmit = async (e) => {
 
   try {
     const NOCODEAPI_URL =
-      "https://v1.nocodeapi.com/shubhamkapase07/google_sheets/XeZtJbENEuMYRCXv?tabId=Sheet1";
+      "https://v1.nocodeapi.com/ppfreelance/google_sheets/uGedcIXlmAuzbmsi?tabId=Queries From Website";
 
     // ✅ Build a 2D array (each inner array is one new row)
     const values = [
